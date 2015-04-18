@@ -1,0 +1,132 @@
+﻿@model AscentrikProjectWorkflow.ViewModel.DashboardViewModel
+
+@{
+    ViewBag.Title = "Admin Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeaderPanel {
+    <div class="headerPanel">
+        <div class="content-wrapper">
+            <div class="floarL leftAlign"><a href="javascript:void(0);" id="lnkModifySearch">Modify Search</a></div>
+            <div class="floatR rightAlign">You have searched for: Client All, for the period from Jan 2014 to Oct 2014 </div>
+        </div>
+    </div>
+}
+<div class="clear"></div>
+<div class="featured searchPanel">
+    <div class="content-wrapper">
+        <p>
+            <div class="floarL" style="width: 30%">
+                Start Month: 
+                <select class="dropdown" id="ddlStartMonth">
+                    <option value="1">Jan</option>
+                    <option value="2">Feb</option>
+                    <option value="3">Mar</option>
+                    <option value="4">Apr</option>
+                    <option value="5">May</option>
+                    <option value="6">Jun</option>
+                    <option value="7">Jul</option>
+                    <option value="8">Aug</option>
+                    <option value="9">Sep</option>
+                    <option value="10">Oct</option>
+                    <option value="11">Nov</option>
+                    <option value="12">Dec</option>
+                </select>
+                <select class="dropdown" id="ddlStartYear">
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                </select>
+            </div>
+            <div class="floarL" style="width: 30%">
+                End Month: 
+                <select class="dropdown" id="ddlEndMonth">
+                    <option value="1">Jan</option>
+                    <option value="2">Feb</option>
+                    <option value="3">Mar</option>
+                    <option value="4">Apr</option>
+                    <option value="5">May</option>
+                    <option value="6">Jun</option>
+                    <option value="7">Jul</option>
+                    <option value="8">Aug</option>
+                    <option value="9">Sep</option>
+                    <option value="10">Oct</option>
+                    <option value="11">Nov</option>
+                    <option value="12">Dec</option>
+                </select>
+                <select class="dropdown" id="ddlEndYear">
+                    <option value="2014">2014</option>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                    <option value="2021">2021</option>
+                    <option value="2022">2022</option>
+                    <option value="2023">2023</option>
+                    <option value="2024">2024</option>
+                    <option value="2025">2025</option>
+                </select>
+            </div>
+            <div class="floarL" style="width: 30%">
+                Client:
+                 @Html.DropDownList("Client", new SelectList(Model.Clients, "Key", "Value", 0), "--Select--", new { @class = "dropdown", @style = "width: 200px;" })
+            </div>
+            <div class="floatR" style="width: 10%">
+                <button type="button" id="btnSearch" class="btn btn-primary" value="Search">Search</button>
+            </div>
+            <div class="clear"></div>
+        </p>
+    </div>
+</div>
+
+<div id="divProjects">
+    @{Html.RenderPartial("_Partial_Projects", Model.Projects);}
+</div>
+@Html.Hidden("FilterProjUri", Url.Action("FilterProjects", "Dashboard"))
+
+<div class="modal bootstrap-dialog size-normal type-primary fade in" id="projectModel" tabindex="-1" role="dialog" aria-labelledby="listModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="projDetail">
+
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $('#btnSearch').click(function () {
+        var startMonth = $('#ddlStartMonth').val();
+        var startYear = $('#ddlStartYear').val();
+        var endMonth = $('#ddlEndMonth').val();
+        var endYear = $('#ddlEndYear').val();
+        var client = $('#Client').val();
+        if ($.trim(client) == "")
+            client = 0;
+        ShowLoader();
+        var url = $('#FilterProjUri').val();
+        $.ajax({
+            url: url,
+            type: "GET",
+            data: { startMonth: startMonth, startYear: startYear, endMonth: endMonth, endYear: endYear, client: client },
+            success: function (sendresponse) {
+                HideLoader();
+                $('#divProjects').html(sendresponse);
+            },
+            error: function (xhr, err) {
+                HideLoader();
+                ShowPopupMsg("Sorry some error occured.");
+            }
+        });
+    });
+</script>

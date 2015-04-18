@@ -1,0 +1,16 @@
+C:\Users\Sandeep Kangude\Downloads\ASP.NET-SImple-Security-Provider-master\Tesseris.Web.SimpleSecurity\bin\Debug\Tesseris.Web.SimpleSecurity.dll
+C:\Users\Sandeep Kangude\Downloads\ASP.NET-SImple-Security-Provider-master\Tesseris.Web.SimpleSecurity\bin\Debug\Tesseris.Web.SimpleSecurity.pdb
+C:\Users\Sandeep Kangude\Downloads\ASP.NET-SImple-Security-Provider-master\Tesseris.Web.SimpleSecurity\bin\Debug\Dapper.dll
+C:\Users\Sandeep Kangude\Downloads\ASP.NET-SImple-Security-Provider-master\Tesseris.Web.SimpleSecurity\bin\Debug\Dapper.pdb
+C:\Users\Sandeep Kangude\Downloads\ASP.NET-SImple-Security-Provider-master\Tesseris.Web.SimpleSecurity\bin\Debug\Dapper.xml
+C:\Users\Sandeep Kangude\Downloads\ASP.NET-SImple-Security-Provider-master\Tesseris.Web.SimpleSecurity\obj\Debug\Tesseris.Web.SimpleSecurity.csprojResolveAssemblyReference.cache
+C:\Users\Sandeep Kangude\Downloads\ASP.NET-SImple-Security-Provider-master\Tesseris.Web.SimpleSecurity\obj\Debug\Tesseris.Web.SimpleSecurity.dll
+C:\Users\Sandeep Kangude\Downloads\ASP.NET-SImple-Security-Provider-master\Tesseris.Web.SimpleSecurity\obj\Debug\Tesseris.Web.SimpleSecurity.pdb
+C:\Sandeep\Ascentrik Project Workflow\AscentrikProjectWorkflow\Tesseris.Web.SimpleSecurity\bin\Debug\Tesseris.Web.SimpleSecurity.dll
+C:\Sandeep\Ascentrik Project Workflow\AscentrikProjectWorkflow\Tesseris.Web.SimpleSecurity\bin\Debug\Tesseris.Web.SimpleSecurity.pdb
+C:\Sandeep\Ascentrik Project Workflow\AscentrikProjectWorkflow\Tesseris.Web.SimpleSecurity\bin\Debug\Dapper.dll
+C:\Sandeep\Ascentrik Project Workflow\AscentrikProjectWorkflow\Tesseris.Web.SimpleSecurity\bin\Debug\Dapper.pdb
+C:\Sandeep\Ascentrik Project Workflow\AscentrikProjectWorkflow\Tesseris.Web.SimpleSecurity\bin\Debug\Dapper.xml
+C:\Sandeep\Ascentrik Project Workflow\AscentrikProjectWorkflow\Tesseris.Web.SimpleSecurity\obj\Debug\Tesseris.Web.SimpleSecurity.csprojResolveAssemblyReference.cache
+C:\Sandeep\Ascentrik Project Workflow\AscentrikProjectWorkflow\Tesseris.Web.SimpleSecurity\obj\Debug\Tesseris.Web.SimpleSecurity.dll
+C:\Sandeep\Ascentrik Project Workflow\AscentrikProjectWorkflow\Tesseris.Web.SimpleSecurity\obj\Debug\Tesseris.Web.SimpleSecurity.pdb

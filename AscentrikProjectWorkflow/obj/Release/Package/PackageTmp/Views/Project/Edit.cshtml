@@ -1,0 +1,164 @@
+﻿@model AscentrikProjectWorkflow.ViewModel.ProjectDetailViewModel
+@{
+    ViewBag.Title = "Edit Project - " + @Model.ProjectInfo.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/Content/themes/base/tabs.css" rel="stylesheet" />
+
+@section HeaderPanel {
+    <div class="headerPanel">
+        <div class="content-wrapper">
+            <div class="floarL leftAlign"><span class="headerText">Edit Project - @Model.ProjectInfo.Name</span></div>
+            <div class="floatR rightAlign"></div>
+        </div>
+    </div>
+}
+<div class="clear"></div>
+<div class="detailPanel">
+    <a href="@Url.Action("Index", "Project")" class="btn btn-info">Back to List</a>
+    <br />
+    <p class="errorPanel"></p>
+    <p class="successPanel"></p>
+
+
+
+    <div class="table-responsive">
+        <div id="tabs">
+            <ul>
+                <li id="tab1" class="btn btn-info active"><a href="#tabs-1" class="tabLink">Project Basic Information</a></li>
+                <li id="tab2"><a href="#tabs-2" class="tabLink">Project Tracking</a></li>
+                @if (Model.ShowCosting)
+                {
+                    <li id="tab3"><a href="#tabs-3" class="tabLink">Project Costing</a></li>
+                }
+            </ul>
+            <div class="clear"></div>
+            <div class="tabPanel" id="tabs-1">
+                @using (Ajax.BeginForm("Edit", "Project", new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnBegin = "onCreateBegin",
+    OnSuccess = "onCreateSuccess",
+    OnFailure = "onCreateFailure"
+}))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    @Html.ValidationMessage("CustomError")
+
+                    <p>
+
+                        @Html.Partial("_Partial_ProjectBasic", Model.ProjectInfo)
+                    </p>
+                    
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <a class="btn btn-success" href='@Url.Action("GenerateInvoice", "Project", new { id = Model.ProjectInfo.Id })'>Download Report</a>
+                    </div>
+                }
+            </div>
+
+            <div class="tabPanel" id="tabs-2">
+                @using (Ajax.BeginForm("TrackProject", "Project", new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnBegin = "onCreateBegin",
+    OnSuccess = "onCreateSuccess",
+    OnFailure = "onCreateFailure"
+}))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true)
+                    @Html.ValidationMessage("CustomError")
+                    
+                    <p>
+
+
+                        @Html.Partial("_Partial_ProjectTracking", Model.ProjectInfo)
+                    </p>
+                                                        
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">Save changes</button>
+                        <a class="btn btn-success" href='@Url.Action("GenerateInvoice", "Project", new { id = Model.ProjectInfo.Id })'>Download Report</a>
+                    </div>
+                }
+
+            </div>
+            @if (Model.ShowCosting)
+            {
+                <div class="tabPanel" id="tabs-3">
+                    @using (Ajax.BeginForm("EditProjectCosting", "Project", new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnSuccess = "onCreateSuccess",
+    OnFailure = "onCreateFailure"
+}))
+                    {
+                        @Html.AntiForgeryToken()
+                        @Html.ValidationSummary(true)
+                        @Html.ValidationMessage("CustomError")
+
+                        <p>
+                            @Html.Partial("_Partial_ProjectCosting", Model.ProjectCosting)
+                        </p>
+                                                        
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                            <a class="btn btn-success" href='@Url.Action("GenerateInvoice", "Project", new { id = Model.ProjectInfo.Id })'>Download Report</a>
+                        </div>
+                    }
+
+                </div>
+            }
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#tabs").tabs();
+    });
+
+    $('.tabLink').click(function () {
+        $(this).closest('ul').find('.active').removeClass('btn btn-info active');
+        $(this).closest('li').addClass('btn btn-info active');
+    });
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#menu').find('li').removeClass('activeMenu');
+        $('#mnuProjects').addClass('activeMenu');
+    });
+
+    function onCreateBegin() {
+        ShowLoader();
+    }
+
+    function onCreateSuccess(data) {
+        $('.errorPanel').text("");
+        $('.errorPanel').hide();
+        $('.successPanel').text("");
+        $('.successPanel').hide();
+        HideLoader();
+        if (data.status == true) {
+            $('.successPanel').show();
+            $('.successPanel').text(data.message);
+            setTimeout(function () {
+                location.reload(true);
+            }, 10000);
+        }
+        else {
+            ShowPopupMsg(data.message);
+            $('.errorPanel').show();
+            $('.errorPanel').text(data.message);
+        }
+    }
+
+    function onCreateFailure() {
+        HideLoader();
+        ShowPopupMsg("Sorry some error occured.");
+        $('.errorPanel').show();
+        $('.errorPanel').text("Sorry some error occured.");
+    }
+</script>

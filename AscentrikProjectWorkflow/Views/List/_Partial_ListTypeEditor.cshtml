@@ -1,0 +1,23 @@
+﻿@model AscentrikProjectWorkflow.ViewModel.ListTypeViewModel
+<p class="errorPanel">
+</p>
+<p class="successPanel">
+</p>
+<fieldset>
+    <legend>ClientViewModel</legend>
+    @Html.HiddenFor(model => model.Id)
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Type)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Type)
+        @Html.ValidationMessageFor(model => model.Type)
+    </div>
+    <div class="editor-label">
+        @Html.LabelFor(model => model.IsActive)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.IsActive)
+        @Html.ValidationMessageFor(model => model.IsActive)
+    </div>
+</fieldset>

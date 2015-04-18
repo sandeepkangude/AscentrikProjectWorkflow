@@ -1,0 +1,35 @@
+﻿@model AscentrikProjectWorkflow.ViewModel.UserViewModel
+<p class="errorPanel">
+</p>
+<p class="successPanel">
+</p>
+
+<fieldset>
+    <legend>ClientViewModel</legend>
+    @Html.HiddenFor(model => model.Id)
+    <div class="editor-label">
+        @Html.LabelFor(model => model.EmailAddress)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.EmailAddress)
+        @Html.ValidationMessageFor(model => model.EmailAddress)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Role)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.Role, new SelectList(Model.Roles, "Key", "Value", Model.Role), "--Select--", new {@class="dropdown", @style="width: 310px;" })
+        @Html.ValidationMessageFor(model => model.Role)
+    </div>
+    
+    <div class="editor-label">
+        @Html.LabelFor(model => model.IsActive)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.IsActive)
+        @Html.ValidationMessageFor(model => model.IsActive)
+    </div>
+</fieldset>
+
+

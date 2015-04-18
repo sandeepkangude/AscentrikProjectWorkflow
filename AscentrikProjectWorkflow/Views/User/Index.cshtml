@@ -1,0 +1,189 @@
+﻿@model IEnumerable<AscentrikProjectWorkflow.ViewModel.UserViewModel>
+@{
+    ViewBag.Title = "Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeaderPanel {
+    <div class="headerPanel">
+        <div class="content-wrapper">
+            <div class="floarL leftAlign"><span class="headerText">Users</span></div>
+            <div class="floatR rightAlign"></div>
+        </div>
+    </div>
+}
+
+<div class="clear"></div>
+<div class="detailPanel">
+    <button id="btnCreateUser" class="btn btn-primary" data-toggle="modal" data-target="#createModal">
+        Add new User
+    </button>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>User Id</th>
+                    <th>Email Address</th>
+                    <th>Role</th>
+                    <th>Status</th>
+                    <th style="width: 130px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td><a href="javascript:void(0);">@item.EmailAddress</a></td>
+                        <td>@item.Role1.Name</td>
+                        <td>@Html.Partial("_Partial_ActiveInActive", item.IsActive)</td>
+                        <td>
+                            <button class="btn btn-sm btn-warning editbtn" data-toggle="modal" data-target="#editModal" code="@item.Id">Edit</button>
+                            <button class="btn btn-sm btn-danger deletebtn" data-toggle="modal" data-target="#deleteModal" code="@item.Id">Delete</button>
+                        </td>
+                    </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5">No records found..</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@*Create Model*@
+<div class="modal bootstrap-dialog size-normal type-primary fade in" id="createModal" tabindex="-1" role="dialog" aria-labelledby="listModalLabel" aria-hidden="true">
+    <div class="modal-dialog" id="createDiv">
+    </div>
+</div>
+
+@*Edit Model*@
+<div class="modal bootstrap-dialog size-normal type-primary fade in" id="editModal" tabindex="-1" role="dialog" aria-labelledby="listModalLabel" aria-hidden="true">
+    <div class="modal-dialog" id="editDiv">
+    </div>
+
+</div>
+
+
+@*Delete Model Dialog*@
+<div class="modal bootstrap-dialog size-normal type-primary fade in" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="listModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h3 class="modal-title bootstrap-dialog-title" id="listModalLabel">Delete User</h3>
+            </div>
+            <div class="modal-body grayMsg">
+                Are you sure you wants to delete this User?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary yesbtn" data-dismiss="modal">YES</button>
+                <button type="button" class="btn btn-default nobtn" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Hidden("CreateUserUri", Url.Action("Create", "User"))
+@Html.Hidden("EditUserUri", Url.Action("Edit", "User"))
+@Html.Hidden("DeleteUserUri", Url.Action("Delete", "User"))
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#menu').find('li').removeClass('activeMenu');
+        $('#mnuUsers').addClass('activeMenu');
+    });
+
+    $('#btnCreateUser').click(function () {
+        var url = $('#CreateUserUri').val();
+        $.ajax({
+            url: url,
+            type: "GET",
+            success: function (sendresponse) {
+                $('#createDiv').html(sendresponse);
+            },
+            error: function (xhr, err) {
+                ShowPopupMsg("Sorry some error occured.");
+            }
+        });
+    });
+
+    $('.editbtn').click(function () {
+        var id = $(this).attr("code");
+        var url = $('#EditUserUri').val();
+        $.ajax({
+            url: url,
+            type: "GET",
+            data: { id: id },
+            success: function (sendresponse) {
+                $('#editDiv').html(sendresponse);
+            },
+            error: function (xhr, err) {
+                ShowPopupMsg("Sorry some error occured.");
+            }
+        });
+    });
+
+    $('.deletebtn').click(function () {
+        var id = $(this).attr("code");
+        var url = $('#DeleteUserUri').val();
+        $('.yesbtn').unbind('click');
+        $('.yesbtn').bind('click', function () {
+            ShowLoader();
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: { id: id },
+                success: function (sendresponse) {
+                    HideLoader();
+                    if (sendresponse.status == true) {
+                        location.reload(true);
+                    }
+                    else {
+                        ShowPopupMsg(sendresponse.message);
+                        return false;
+                    }
+                },
+                error: function (xhr, err) {
+                    HideLoader();
+                    ShowPopupMsg("Sorry some error occured.");
+                    return false;
+                }
+            });
+        });
+    });
+
+    function onCreateBegin() {
+        ShowLoader();
+    }
+
+    function onCreateSuccess(data) {
+        $('.errorPanel').text("");
+        $('.errorPanel').hide();
+        $('.successPanel').text("");
+        $('.successPanel').hide();
+        HideLoader();
+        if (data.status == true) {
+            $('.successPanel').show();
+            $('.successPanel').text(data.message);
+            setTimeout(function () {
+                location.reload(true);
+            }, 1000);
+        }
+        else {
+            $('.errorPanel').show();
+            $('.errorPanel').text(data.message);
+        }
+    }
+
+    function onCreateFailure() {
+        $('.errorPanel').show();
+        $('.errorPanel').text("Sorry some error occured.");
+    }
+</script>

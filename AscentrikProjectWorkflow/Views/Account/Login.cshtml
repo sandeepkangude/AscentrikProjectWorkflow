@@ -1,0 +1,111 @@
+﻿@model AscentrikProjectWorkflow.Models.LoginModel
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Login</title>
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Bootstrap/css")
+    <link href="~/Content/Style.css" rel="stylesheet" />
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+
+</head>
+<body style="background-color: #172856">
+    <div class="content-wrapper loginOuter">
+        <div class="shadow roundCorner loginInner">
+            <h2>Login</h2>
+            <hr />
+            @using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <fieldset>
+                    <legend>Log in Form</legend>
+                    <ol>
+                        <li>
+
+                            @Html.TextBoxFor(m => m.UserName, new { @placeholder = "Email Address" })
+                            @Html.ValidationMessageFor(m => m.UserName)
+                        </li>
+                        <li>
+                            @Html.PasswordFor(m => m.Password, new { @placeholder = "Password" })
+                            @Html.ValidationMessageFor(m => m.Password)
+                        </li>
+                        <li>
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe, new { @class = "checkbox" })
+                        </li>
+                    </ol>
+                    <input type="submit" value="Log In" />
+                    <a style="color: #999; font-size: 11px; text-decoration: none;" href="#" data-toggle="modal" data-target="#passModal">Forget Password</a>
+                </fieldset>
+            }
+        </div>
+    </div>
+
+    <div class="modal bootstrap-dialog size-normal type-primary fade in" id="passModal" tabindex="-1" role="dialog" aria-labelledby="listModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h3 class="modal-title bootstrap-dialog-title" id="listModalLabel">Forget Password</h3>
+                </div>
+                <div class="modal-body grayMsg">
+                    <input type="text" id="txtEmailAddress" placeholder="Enter your Email Address" />
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary yesbtn">Send Password</button>
+                    <button type="button" class="btn btn-default nobtn" data-dismiss="modal">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    @Html.Hidden("ChangePasswordUrl", Url.Action("ForgotPassword", "Account"))
+
+    @Scripts.Render("~/bundles/jquery")
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/common.js"></script>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+    <script>
+        $(function () {
+            var window_height = $(window).height(),
+               content_height = window_height - 10;
+
+            $('.loginOuter').height(content_height);
+        });
+
+        $('.yesbtn').click(function () {
+            var url = $('#ChangePasswordUrl').val();
+            var email = $('#txtEmailAddress').val();
+            
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: { email: email },
+                success: function (sendresponse) {
+                    if (sendresponse.status == true) {
+                        $('.nobtn').click();
+                    }
+                    alert(sendresponse.message);
+                },
+                error: function (xhr, err) {
+                    alert("Sorry some error occured.");
+                }
+            });
+        });
+    </script>
+</body>
+</html>

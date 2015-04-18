@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="c0af0f34cc744b9aabe28cbf371519c9" Name="Diagram1">
+        <EntityTypeShape EntityType="AscentrikProjectWorkflowModel.Client" Width="1.5" PointX="5.25" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AscentrikProjectWorkflowModel.Currency" Width="1.5" PointX="12.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AscentrikProjectWorkflowModel.List" Width="1.5" PointX="7.5" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AscentrikProjectWorkflowModel.ListType" Width="1.5" PointX="5.25" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="AscentrikProjectWorkflowModel.Priority" Width="1.5" PointX="7.5" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AscentrikProjectWorkflowModel.Project" Width="1.5" PointX="9.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AscentrikProjectWorkflowModel.ProjectAssignment" Width="1.5" PointX="12" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="AscentrikProjectWorkflowModel.ProjectCosting" Width="1.5" PointX="15" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AscentrikProjectWorkflowModel.ProjectStatu" Width="1.5" PointX="7.5" PointY="10.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AscentrikProjectWorkflowModel.Role" Width="1.5" PointX="0.75" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="AscentrikProjectWorkflowModel.User" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="AscentrikProjectWorkflowModel.webpages_Membership" Width="1.5" PointX="0.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AscentrikProjectWorkflowModel.webpages_OAuthMembership" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AscentrikProjectWorkflowModel.webpages_Roles" Width="1.5" PointX="0.75" PointY="3.375" IsExpanded="true" />
+        <AssociationConnector Association="AscentrikProjectWorkflowModel.FK_Client_User" ManuallyRouted="false" />
+        <AssociationConnector Association="AscentrikProjectWorkflowModel.FK_Client_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="AscentrikProjectWorkflowModel.FK_List_Client" ManuallyRouted="false" />
+        <AssociationConnector Association="AscentrikProjectWorkflowModel.FK_ProjectCosting_Currency" ManuallyRouted="false" />
+        <AssociationConnector Association="AscentrikProjectWorkflowModel.FK_List_ListType" ManuallyRouted="false" />
+        <AssociationConnector Association="AscentrikProjectWorkflowModel.FK_List_User" ManuallyRouted="false" />
+        <AssociationConnector Association="AscentrikProjectWorkflowModel.FK_List_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="AscentrikProjectWorkflowModel.FK_Project_List" ManuallyRouted="false" />
+        <AssociationConnector Association="AscentrikProjectWorkflowModel.FK_ListType_User" ManuallyRouted="false" />
+        <AssociationConnector Association="AscentrikProjectWorkflowModel.FK_ListType_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="AscentrikProjectWorkflowModel.FK_Project_Priority" ManuallyRouted="false" />
+        <AssociationConnector Association="AscentrikProjectWorkflowModel.FK_Project_ProjectStatus" ManuallyRouted="false" />
+        <AssociationConnector Association="AscentrikProjectWorkflowModel.FK_Project_User" ManuallyRouted="false" />
+        <AssociationConnector Association="AscentrikProjectWorkflowModel.FK_Project_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="AscentrikProjectWorkflowModel.FK_ProjectAssignment_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="AscentrikProjectWorkflowModel.FK_ProjectCosting_Project" ManuallyRouted="false" />
+        <AssociationConnector Association="AscentrikProjectWorkflowModel.FK_ProjectAssignment_User" ManuallyRouted="false" />
+        <AssociationConnector Association="AscentrikProjectWorkflowModel.FK_ProjectCosting_User1" ManuallyRouted="false" />
+        <AssociationConnector Association="AscentrikProjectWorkflowModel.FK_User_Role" ManuallyRouted="false" />
+        <AssociationConnector Association="AscentrikProjectWorkflowModel.webpages_UsersInRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

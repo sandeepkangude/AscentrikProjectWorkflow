@@ -1,0 +1,68 @@
+﻿@model AscentrikProjectWorkflow.ViewModel.ProjectDetailViewModel
+
+<div class="modal-content">
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h3 class="modal-title bootstrap-dialog-title" id="listModalLabel">@Model.ProjectInfo.Name</h3>
+    </div>
+    <div class="modal-body">
+        @using (Ajax.BeginForm("Edit", "Project", new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnBegin = "onCreateBegin",
+    OnSuccess = "onCreateSuccess",
+    OnFailure = "onCreateFailure"
+}))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
+            @Html.ValidationMessage("CustomError")
+
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th></th>
+                        <th></th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th>Status</th>
+                        <td>@Html.DropDownListFor(model => model.ProjectInfo.ProjectStatus, new SelectList(Model.ProjectInfo.StatusList, "Key", "Value", Model.ProjectInfo.ProjectStatus), "--Select--", new { @class = "dropdown" })</td>
+                        <td>@Html.ValidationMessageFor(model => model.ProjectInfo.ProjectStatus)</td>
+                    </tr>
+
+                    <tr>
+                        <th>No Of Records Deliverd</th>
+                        <td>@Html.TextBoxFor(model => model.ProjectInfo.NoOfRecordsDeliverd)</td>
+                        <td>@Html.ValidationMessageFor(model => model.ProjectInfo.NoOfRecordsDeliverd)</td>
+                    </tr>
+
+                    <tr>
+                        <th>Duplicate Records Founds</th>
+                        <td>@Html.TextBoxFor(model => model.ProjectInfo.DuplicateFounds)</td>
+                        <td>@Html.ValidationMessageFor(model => model.ProjectInfo.DuplicateFounds)</td>
+                    </tr>
+
+                    <tr>
+                        <th>Cost Per Record</th>
+                        <td>@Html.TextBoxFor(model => model.ProjectCosting.CostPerRecord)</td>
+                        <td>@Html.ValidationMessageFor(model => model.ProjectCosting.CostPerRecord)</td>
+                    </tr>
+                    
+                    <tr>
+                        <th>Actual Delivery Date</th>
+                        <td>@Html.TextBoxFor(model => model.ProjectInfo.ActualDeliveryDateText, new { @class = "datepicker" }) <span>(dd-mm-yyyy)</span></td>
+                        <td>@Html.ValidationMessageFor(model => model.ProjectInfo.ActualDeliveryDateText)</td>
+                    </tr>
+
+                </tbody>
+            </table>
+        }
+    </div>
+    <div class="modal-footer">
+        <button type="submit" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+    </div>
+</div>

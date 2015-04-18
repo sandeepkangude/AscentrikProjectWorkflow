@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - Ascentrik Project Workflow</title>
+    <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Styles.Render("~/Bootstrap/css")
+
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/jqueryui")
+    @Scripts.Render("~/bundles/jqueryval")
+</head>
+<body>
+    <header>
+        <div class="content-wrapper">
+            <div class="float-left">
+                <p class="site-title">@Html.ActionLink("Ascentrik Project Workflow", "Index", "Home")</p>
+            </div>
+            <div class="float-right">
+                <section id="login">
+                    @Html.Partial("_LoginPartial")
+                </section>
+                <nav>
+                    <ul id="menu">
+
+                        @if (this.User.IsInRole("Admin"))
+                        {
+                            <li class="activeMenu" id="mnuDashboard">@Html.ActionLink("Dashboard", "Index", "Home")</li>
+                            <li id="mnuClient">@Html.ActionLink("Clients", "Index", "Client")</li>
+                            <li id="mnuLists">@Html.ActionLink("Lists", "Index", "List")</li>
+                            <li id="mnuProjects">@Html.ActionLink("Projects", "Index", "Project")</li>
+                            <li id="mnuUsers">@Html.ActionLink("Users", "Index", "User")</li>
+                        }
+                        else
+                        {
+                            <li class="activeMenu" id="mnuDashboard">@Html.ActionLink("Dashboard", "Index", "Home")</li>
+                            <li id="mnuLists">@Html.ActionLink("Lists", "Index", "List")</li>
+                            <li id="mnuProjects">@Html.ActionLink("Projects", "Index", "Project")</li>
+                        }
+
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <div id="body">
+        @RenderSection("HeaderPanel", required: false)
+        <section class="content-wrapper clear-fix mainContent">
+            @RenderBody()
+        </section>
+    </div>
+    <div class="modal bootstrap-dialog size-normal type-primary fade in" id="loaderModal" tabindex="-1" role="dialog" aria-labelledby="listModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title bootstrap-dialog-title">Please wait...</h3>
+                </div>
+                <div class="modal-body" style="text-align: center;">
+                    <img src="~/Images/loading.gif" />
+                </div>
+                <div class="modal-footer">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal bootstrap-dialog size-normal type-primary fade in" id="messageModal" tabindex="-1" role="dialog" aria-labelledby="messageModelLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" onclick="HidePopupMsg()"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h3 class="modal-title bootstrap-dialog-title">Message for you</h3>
+                </div>
+                <div class="modal-body grayMsg" id="msgDiv">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="HidePopupMsg()">OK</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/common.js"></script>
+
+    <script type="text/javascript">
+        $('#lnkModifySearch').click(function () {
+            $('.searchPanel').slideToggle('slow');
+        });
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+﻿@model IEnumerable<AscentrikProjectWorkflow.ViewModel.ClientViewModel>
+@{
+    ViewBag.Title = "Client List";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section HeaderPanel {
+    <div class="headerPanel">
+        <div class="content-wrapper">
+            <div class="floarL leftAlign"><span class="headerText">Clients</span></div>
+            <div class="floatR rightAlign"></div>
+        </div>
+    </div>
+}
+
+<div class="clear"></div>
+<div class="detailPanel">
+    <button class="btn btn-primary" data-toggle="modal" data-target="#createModal">
+        Add new Client
+    </button>
+
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Client Id</th>
+                    <th>Client Name</th>
+                    <th>Client Code</th>
+                    <th>Status</th>
+                    <th style="width: 115px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var client in Model)
+                    { 
+                    <tr>
+                        <td><a href="Project.html">@client.Id</a></td>
+                        <td>@client.Name</td>
+                        <td>@client.Code</td>
+                        <td>@Html.Partial("_Partial_ActiveInActive", client.IsActive)</td>
+                        <td>
+                            <button class="btn btn-sm btn-warning editbtn" data-toggle="modal" data-target="#editModal" code="@client.Id">Edit</button>
+                            <button class="btn btn-sm btn-danger deletebtn" data-toggle="modal" data-target="#deleteModal" code="@client.Id">Delete</button>
+                        </td>
+                    </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="5">No records found..</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+@Html.Partial("Create", new AscentrikProjectWorkflow.ViewModel.ClientViewModel())
+@Html.Hidden("GetClientUri", Url.Action("Edit", "Client"))
+@Html.Hidden("DeleteClientUri", Url.Action("Delete", "Client"))
+
+@*Edit Model Dialog*@
+<div class="modal bootstrap-dialog size-normal type-primary fade in" id="editModal" tabindex="-1" role="dialog" aria-labelledby="listModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @using (Ajax.BeginForm("Edit", "Client", new AjaxOptions
+                {
+                    HttpMethod = "POST",
+                    OnSuccess = "onCreateSuccess",
+                    OnFailure = "onCreateFailure"
+                }))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true)
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h3 class="modal-title bootstrap-dialog-title" id="listModalLabel">Edit Client</h3>
+                </div>
+                <div class="modal-body" id="editModelBody">
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+@*Delete Model Dialog*@
+<div class="modal bootstrap-dialog size-normal type-primary fade in" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="listModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h3 class="modal-title bootstrap-dialog-title" id="listModalLabel">Delete Client</h3>
+            </div>
+            <div class="modal-body grayMsg">
+                Are you sure you wants to delete this client?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary yesbtn" data-dismiss="modal">YES</button>
+                <button type="button" class="btn btn-default nobtn" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#menu').find('li').removeClass('activeMenu');
+        $('#mnuClient').addClass('activeMenu');
+    });
+
+    $('.editbtn').click(function () {
+        var id = $(this).attr("code");
+        var url = $('#GetClientUri').val();
+        $.ajax({
+            url: url,
+            type: "GET",
+            data: { id: id },
+            success: function (sendresponse) {
+                $('#editModelBody').html(sendresponse);
+            },
+            error: function (xhr, err) {
+                //alert("readyState: " + xhr.readyState + "\nstatus: " + xhr.status);
+                //alert("responseText: " + xhr.responseText);
+                ShowPopupMsg("Sorry some error occured.");
+            }
+        });
+    });
+
+    $('.deletebtn').click(function () {
+        var id = $(this).attr("code");
+        var url = $('#DeleteClientUri').val();
+        $('.yesbtn').unbind('click');
+        $('.yesbtn').bind('click', function () {
+            ShowLoader();
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: { id: id },
+                success: function (sendresponse) {
+                    HideLoader();
+                    if (sendresponse.status == true) {
+                        location.reload(true);
+                    }
+                    else {
+                        ShowPopupMsg(sendresponse.message);
+                    }
+                },
+                error: function (xhr, err) {
+                    HideLoader();
+                    ShowPopupMsg("Sorry some error occured.");
+                }
+            });
+        });
+    });
+
+    function onCreateSuccess(data) {
+        $('.errorPanel').text("");
+        $('.errorPanel').hide();
+        $('.successPanel').text("");
+        $('.successPanel').hide();
+        if (data.status == true) {
+            
+            $('.successPanel').show();
+            $('.successPanel').text(data.message);
+            setTimeout(function () {
+                location.reload(true);
+                $('#createModal').modal('hide');
+            }, 1000);
+        }
+        else {
+            $('.errorPanel').show();
+            $('.errorPanel').text(data.message);
+        }
+    }
+
+    function onCreateFailure() {
+        $('.errorPanel').show();
+        $('.errorPanel').text("Sorry some error occured.");
+    }
+</script>

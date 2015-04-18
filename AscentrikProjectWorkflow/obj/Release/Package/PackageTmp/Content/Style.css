@@ -1,0 +1,423 @@
+﻿.loginOuter {
+    text-align: center;
+    height: 100%;
+}
+
+.loginInner {
+    display: inline-block;
+    background-color: #294dc3;
+    padding: 20px 40px;
+    margin-top: 125px;
+    font-weight: normal;
+}
+
+    .loginInner h2 {
+        color: #fff;
+        font-weight: normal;
+    }
+
+    .loginInner input {
+        font-weight: normal;
+        font-size: 12px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .loginInner label {
+        font-weight: normal;
+        font-size: 12px;
+        color: #fff;
+    }
+
+    .loginInner input[type="submit"] {
+        width: 50%;
+        background-color: #808080;
+        color: #fff;
+    }
+
+.shadow {
+    -moz-box-shadow: 3px 3px 5px #000;
+    -webkit-box-shadow: 3px 3px 5px #000;
+    box-shadow: 3px 3px 5px #000;
+    /* For IE 8 */
+    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";
+    /* For IE 5.5 - 7 */
+    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');
+}
+
+.roundCorner {
+    border-radius: 5px 5px 5px 5px;
+    -webkit-border-radius: 5px 5px 5px 5px;
+    -moz-border-radius: 5px 5px 5px 5px;
+}
+
+.clear {
+    clear: both;
+}
+
+.projects {
+    display: block;
+    clear: both;
+    padding: 10px;
+}
+
+    .projects h3 {
+        color: #808080;
+        margin: 0;
+        font-size: 1.1em!important;
+    }
+
+.projectSection {
+    border-bottom: #3c3636 dotted 1px;
+    width: 100%;
+    height: 100%;
+    display: block;
+    float: left;
+    margin-bottom: 10px;
+}
+
+ul .projectTile {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    list-style-type: none;
+}
+
+.projectTile li {
+    float: left;
+    width: 13.4%;
+    height: 120px;
+    margin: 10px 5px;
+    color: #f2f2f2;
+    list-style-type: none;
+    cursor: pointer;
+    position: relative;
+}
+
+.currentProjectTile {
+    background-color: #294dc3;
+}
+
+.newProjectTile {
+    background-color: #d41919;
+}
+
+.completeProjectTile {
+    background-color: #48b505;
+}
+
+.projectTile .item .secondDiv {
+    display: block;
+    position: absolute;
+    top: 0;
+    background-color: rgba(0, 0, 0, 0.90);
+    color: #fff;
+    opacity: 0;
+    z-index: 3;
+    -webkit-animation: 0.5s;
+    -o-animation: 0.5s;
+    animation: 0.5s;
+    -webkit-transition: all ease-out 0.5s;
+    -moz-transition: all ease-out 0.5s;
+    -o-transition: all ease-out 0.5s;
+    transition: all ease-out 0.5s;
+    text-align: justify;
+    width: 112px;
+    height: 110px;
+    padding: 5px;
+}
+
+    .projectTile .item .secondDiv .hover_title {
+        display: block;
+        font-weight: normal;
+        font-size: 15px;
+        text-transform: uppercase;
+        padding: 0 0 8px;
+    }
+
+.projectTile .item:hover .secondDiv {
+    opacity: 1;
+    -webkit-animation: 0.5s;
+    -o-animation: 0.5s;
+    animation: 0.5s;
+    -webkit-transition: a11 ease-out 0.5s;
+    -moz-transition: all ease-out 0.5s;
+    -o-transition: all ease-out 0.5s;
+    transition: all ease-out 0.5s;
+}
+
+.firstDiv {
+    position: absolute;
+    display: block;
+    height: 100px;
+    width: 105px;
+    padding: 5px;
+}
+/*.secondDiv {position:absolute; display:block;height:100px; width:105px;padding: 10px;}*/
+.projectCode {
+    font-size: 13px;
+    font-weight: bold;
+    height: 30px;
+}
+
+.listCode {
+    font-size: 12px;
+    font-weight: bold;
+    height: 50px;
+}
+
+.records {
+    font-size: 10px;
+    bottom: 0;
+    border-top: #fff dotted 1px;
+    width: 100%;
+    padding-top: 5px;
+}
+
+.description {
+    height: 80px;
+    font-size: 11px;
+}
+
+.links {
+    bottom: 0;
+    width: 80%;
+    padding-top: 3px;
+    padding-left: 15px;
+    margin: 0 auto;
+}
+
+    .links a {
+        color: #fff;
+        font-size: 12px;
+        text-decoration: none;
+        border: 1px #fff solid;
+        padding: 5px;
+    }
+
+        .links a:hover {
+            background-color: inherit;
+            color: #f6e41d;
+        }
+
+.floarL {
+    float: left;
+}
+
+.floatR {
+    float: right;
+}
+
+.leftAlign {
+    text-align: left;
+}
+
+.rightAlign {
+    text-align: right;
+}
+
+.headerPanel {
+    background-color: #3c3636;
+    color: #fff;
+    height: 25px;
+    width: 100%;
+    padding: 5px 10px;
+}
+
+    .headerPanel .headerText {
+        font-size: 1.3em;
+        font-weight: bold;
+        color: #fff;
+    }
+
+    .headerPanel .floatL {
+        width: 30%;
+    }
+
+    .headerPanel .floatR {
+        width: 68%;
+    }
+
+    .headerPanel a {
+        display: block;
+        color: #fff;
+    }
+
+.searchPanel {
+    display: none;
+}
+
+.detailPanel {
+    margin: 10px;
+}
+
+.edit {
+    background: url('../Images/black_and_white_icons.jpg') no-repeat top left;
+    background-position: -0px -57px;
+    height: 43px;
+    width: 40px;
+    display: block;
+    float: left;
+    margin-right: 10px;
+}
+
+.errorPanel {
+    color: red;
+    font-size: 14px;
+    text-align: left;
+    display: none;
+}
+
+.successPanel {
+    color: green;
+    font-size: 14px;
+    text-align: left;
+    display: none;
+}
+
+.grayMsg {
+    color: #808080;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.dropdown {
+    padding: 5px 5px 5px 5px;
+}
+
+.editor-label {
+    color: #666;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+select {
+    border: 1px solid #e2e2e2;
+}
+
+.active {
+    color: green;
+}
+
+.inactive {
+    color: red;
+}
+
+#tabs ul {
+}
+
+    #tabs ul li {
+        font-size: 1em;
+        padding: 0px;
+    }
+    #tabs ul .active a {
+        color: #fff;
+    }
+    #tabs ul .active a:hover {
+        color: #fff;
+        background-color: none;
+    }
+#tabs .tabPanel {
+    border: 1px solid #46b8da;
+    margin: 0px 4px;
+}
+
+.ui-datepicker {
+    background: url("images/ui-bg_flat_75_ffffff_40x100.png") repeat-x scroll 50% 50% #ffffff;
+    border: 1px solid #aaaaaa;
+    color: #222222;
+    font-family: Verdana,Arial,sans-serif;
+    font-size: 1.1em;
+    padding: 0.2em 0.2em 0;
+    width: 17em;
+}
+.ui-datepicker .ui-datepicker-header {
+    padding: 0.2em 0;
+    position: relative;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+    border-bottom-right-radius: 4px;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+    border-bottom-left-radius: 4px;
+}
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
+    border-top-right-radius: 4px;
+}
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+    border-top-left-radius: 4px;
+}
+.ui-datepicker-header {
+    background: url("images/ui-bg_highlight-soft_75_cccccc_1x100.png") repeat-x scroll 50% 50% #cccccc;
+    border: 1px solid #aaaaaa;
+    color: #222222;
+    font-weight: bold;
+}
+.ui-datepicker .ui-datepicker-prev {
+    left: 2px;
+}
+.ui-datepicker .ui-datepicker-next {
+    right: 2px;
+}
+.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next {
+    height: 1.8em;
+    position: absolute;
+    top: 2px;
+    width: 1.8em;
+}
+.ui-datepicker-header a {
+    color: #222222;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+    border-bottom-right-radius: 4px;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+    border-bottom-left-radius: 4px;
+}
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
+    border-top-right-radius: 4px;
+}
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+    border-top-left-radius: 4px;
+}
+.ui-datepicker .ui-datepicker-title {
+    line-height: 1.8em;
+    margin: 0 2.3em;
+    text-align: center;
+}
+.ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span {
+    display: block;
+    left: 50%;
+    font-size: 11px;
+    margin-left: -15px;
+    margin-top: -8px;
+    position: absolute;
+    top: 50%;
+}
+.ui-datepicker table {
+    border-collapse: collapse;
+    font-size: 0.9em;
+    margin: 0 0 0.4em;
+    width: 100%;
+}
+.ui-datepicker th {
+    border: 0 none;
+    font-weight: bold;
+    padding: 0.7em 0.3em;
+    text-align: center;
+}
+.ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled {
+    background-image: none;
+    opacity: 0.35;
+}
+.ui-datepicker td {
+    border: 0 none;
+    padding: 1px;
+}
+.ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled {
+    background-image: none;
+    opacity: 0.35;
+}
+.ui-state-disabled {
+    cursor: default !important;
+}

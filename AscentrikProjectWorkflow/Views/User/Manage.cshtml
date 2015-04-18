@@ -1,0 +1,112 @@
+﻿@model AscentrikProjectWorkflow.ViewModel.UserViewModel
+@{
+    ViewBag.Title = "User Profile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section HeaderPanel {
+    <div class="headerPanel">
+        <div class="content-wrapper">
+            <div class="floarL leftAlign"><span class="headerText">User Profile</span></div>
+            <div class="floatR rightAlign"></div>
+        </div>
+    </div>
+}
+
+<div class="clear"></div>
+<div class="detailPanel">
+    <button id="btnChangePassword" class="btn btn-primary" data-toggle="modal" data-target="#changePassModal">
+        Change Password
+    </button>
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <tbody>
+                @if (Model != null)
+                {
+                    <tr>
+                        <th>User ID</th>
+                        <td>@Model.Id</td>
+                    </tr>
+                    <tr>
+                        <th>Email Address</th>
+                        <td>@Model.EmailAddress</td>
+                    </tr>
+                    <tr>
+                        <th>Display Name</th>
+                        <td>@Model.DisplayName</td>
+                    </tr>
+                    <tr>
+                        <th>Role</th>
+                        <td>@Model.Role1.Name</td>
+                    </tr>
+                    <tr>
+                        <th>Status</th>
+                        <td>@Html.Partial("_Partial_ActiveInActive", Model.IsActive)</td>
+                    </tr>
+                }
+
+                else
+                {
+                    <tr>
+                        <td colspan="2">No records found..</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+@*Create Model*@
+<div class="modal bootstrap-dialog size-normal type-primary fade in" id="changePassModal" tabindex="-1" role="dialog" aria-labelledby="listModalLabel" aria-hidden="true">
+    <div class="modal-dialog" id="changePasswordDiv">
+    </div>
+</div>
+@Html.Hidden("ChangePasswordUri", Url.Action("ChangePassword", "User"))
+
+<script type="text/javascript">
+    
+    $('#btnChangePassword').click(function () {
+        var url = $('#ChangePasswordUri').val();
+        $.ajax({
+            url: url,
+            type: "GET",
+            success: function (sendresponse) {
+                $('#changePasswordDiv').html(sendresponse);
+            },
+            error: function (xhr, err) {
+                ShowPopupMsg("Sorry some error occured.");
+            }
+        });
+    });
+
+    function onCreateBegin() {
+        ShowLoader();
+    }
+
+    function onCreateSuccess(data) {
+        $('.errorPanel').text("");
+        $('.errorPanel').hide();
+        $('.successPanel').text("");
+        $('.successPanel').hide();
+        HideLoader();
+        if (data.status == true) {
+            $('.successPanel').show();
+            $('.successPanel').text(data.message);
+            setTimeout(function () {
+                //location.reload(true);
+                //$('#lnkLogOff').trigger('click');
+                document.getElementById('logoutForm').submit();
+            }, 1000);
+        }
+        else {
+            $('.errorPanel').show();
+            $('.errorPanel').text(data.message);
+        }
+    }
+
+    function onCreateFailure() {
+        $('.errorPanel').show();
+        $('.errorPanel').text("Sorry some error occured.");
+    }
+</script>

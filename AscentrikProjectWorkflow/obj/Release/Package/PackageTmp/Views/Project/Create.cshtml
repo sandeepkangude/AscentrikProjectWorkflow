@@ -1,0 +1,45 @@
+﻿@model AscentrikProjectWorkflow.ViewModel.ProjectViewModel
+@{
+    ViewBag.Title = "Create Project";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@section HeaderPanel {
+    <div class="headerPanel">
+        <div class="content-wrapper">
+            <div class="floarL leftAlign"><span class="headerText">Create Project</span></div>
+            <div class="floatR rightAlign"></div>
+        </div>
+    </div>
+}
+
+<div class="clear"></div>
+<div class="detailPanel">
+    <a href="@Url.Action("Index", "Project")" class="btn btn-info">Back to List</a>
+
+    @using (Html.BeginForm("Create", "Project"))
+    {
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true)
+        @Html.ValidationMessage("CustomError")
+        @Html.HiddenFor(model => model.ProjectStatus)
+        <div class="table-responsive">
+            @Html.Partial("_Partial_ProjectBasic", Model)
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Reset</button>
+            </div>
+        </div>
+    }
+</div>
+<script type="text/javascript">
+    $('#divStatus').hide();
+
+    function onCreateBegin() {
+    }
+    function onCreateSuccess() {
+    }
+    function onCreateFailure() {
+    }
+</script>

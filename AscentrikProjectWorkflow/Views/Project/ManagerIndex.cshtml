@@ -1,0 +1,130 @@
+﻿@model IEnumerable<AscentrikProjectWorkflow.ViewModel.ProjectViewModel>
+@{
+    ViewBag.Title = "Projects";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeaderPanel {
+    <div class="headerPanel">
+        <div class="content-wrapper">
+            <div class="floarL leftAlign"><span class="headerText">Projects</span></div>
+            <div class="floatR rightAlign"></div>
+        </div>
+    </div>
+}
+
+<div class="clear"></div>
+<div class="detailPanel">
+    <a href="@Url.Action("Create", "Project")" class="btn btn-primary">Add new Project</a>
+    
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>Project Name</th>
+                    <th>Project Code</th>
+                    <th>List Name</th>
+                    <th>Client Code</th>
+                    <th>Project Status</th>
+                    <th>Records Deliverd</th>
+                    <th style="width: 130px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                    <tr>
+                        <td><a href="javascript:void(0);">@item.Name</a></td>
+                        <td>@item.ProjectCode</td>
+                        <td>@item.List.Code</td>
+                        <td>@item.List.Client.Code</td>
+                        <td>@item.ProjectStatu.Name</td>
+                        <td>@item.NoOfRecordsDeliverd.GetValueOrDefault()</td>
+                        <td>
+                            <a href="@Url.Action("Edit", "Project", new { id = item.Id })" class="btn btn-sm btn-warning editbtn">Edit</a>
+                            
+                            @if (item.ProjectStatus <= 1)
+                            {
+                                <button class="btn btn-sm btn-danger deletebtn" data-toggle="modal" data-target="#deleteModal" code="@item.Id">Delete</button>
+                            }
+                        </td>
+                    </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="6">No records found..</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#menu').find('li').removeClass('activeMenu');
+        $('#mnuProjects').addClass('activeMenu');
+    });
+
+    $('.deletebtn').click(function () {
+        var id = $(this).attr("code");
+        var url = $('#DeleteListUri').val();
+        $('.yesbtn').unbind('click');
+        $('.yesbtn').bind('click', function () {
+            ShowLoader();
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: { id: id },
+                success: function (sendresponse) {
+                    HideLoader();
+                    if (sendresponse.status == true) {
+                        location.reload(true);
+                    }
+                    else {
+                        ShowPopupMsg(sendresponse.message);
+                        return false;
+                    }
+                },
+                error: function (xhr, err) {
+                    HideLoader();
+                    ShowPopupMsg("Sorry some error occured.");
+                    return false;
+                }
+            });
+        });
+    });
+
+    function onCreateBegin() {
+        ShowLoader();
+    }
+
+    function onCreateSuccess(data) {
+        $('.errorPanel').text("");
+        $('.errorPanel').hide();
+        $('.successPanel').text("");
+        $('.successPanel').hide();
+        HideLoader();
+        if (data.status == true) {
+            $('.successPanel').show();
+            $('.successPanel').text(data.message);
+            setTimeout(function () {
+                location.reload(true);
+            }, 1000);
+        }
+        else {
+            $('.errorPanel').show();
+            $('.errorPanel').text(data.message);
+        }
+    }
+
+    function onCreateFailure() {
+        $('.errorPanel').show();
+        $('.errorPanel').text("Sorry some error occured.");
+    }
+</script>

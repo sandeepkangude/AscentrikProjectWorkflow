@@ -1,0 +1,52 @@
+﻿@model AscentrikProjectWorkflow.ViewModel.ProjectViewModel
+
+@Html.HiddenFor(model => model.Id)
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>No Of Records Deliverd</th>
+            <td>@Html.TextBoxFor(model => model.NoOfRecordsDeliverd)</td>
+            <td>@Html.ValidationMessageFor(model => model.NoOfRecordsDeliverd)</td>
+        </tr>
+
+        <tr>
+            <th>Duplicate Records Founds</th>
+            <td>@Html.TextBoxFor(model => model.DuplicateFounds)</td>
+            <td>@Html.ValidationMessageFor(model => model.DuplicateFounds)</td>
+        </tr>
+
+        <tr>
+            <th>Actual Delivery Date</th>
+            <td>@Html.TextBoxFor(model => model.ActualDeliveryDateText, new { @class = "datepicker" }) <span>(dd-mm-yyyy)</span></td>
+            <td>@Html.ValidationMessageFor(model => model.ActualDeliveryDateText)</td>
+        </tr>
+
+        <tr>
+            <th>Actual Delivery Date</th>
+            <td>@Html.TextBoxFor(model => model.FTPUploadDateText, new { @class = "datepicker" }) <span>(dd-mm-yyyy)</span></td>
+            <td>@Html.ValidationMessageFor(model => model.FTPUploadDateText)</td>
+        </tr>
+        
+        <tr>
+            <th>FTP Upload Remarks</th>
+            <td>@Html.TextAreaFor(model => model.FTPUploadRemarks)</td>
+            <td>@Html.ValidationMessageFor(model => model.FTPUploadRemarks)</td>
+        </tr>
+        
+        <tr>
+            <th>Research Remarks</th>
+            <td>@Html.TextAreaFor(model => model.ResearchRemark)</td>
+            <td>@Html.ValidationMessageFor(model => model.ResearchRemark)</td>
+        </tr>
+
+        @Html.HiddenFor(model => model.ProjectStatus)
+       
+    </tbody>
+</table>

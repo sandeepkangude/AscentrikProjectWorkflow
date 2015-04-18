@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AscentrikProjectWorkflow", "AscentrikProjectWorkflow\AscentrikProjectWorkflow.csproj", "{33D83E59-6286-49CD-841A-A487075F5EBA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tesseris.Web.SimpleSecurity", "Tesseris.Web.SimpleSecurity\Tesseris.Web.SimpleSecurity.csproj", "{80A8114F-4F1E-4804-804C-DDDA7E7545F9}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{33D83E59-6286-49CD-841A-A487075F5EBA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{33D83E59-6286-49CD-841A-A487075F5EBA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{33D83E59-6286-49CD-841A-A487075F5EBA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{33D83E59-6286-49CD-841A-A487075F5EBA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80A8114F-4F1E-4804-804C-DDDA7E7545F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80A8114F-4F1E-4804-804C-DDDA7E7545F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80A8114F-4F1E-4804-804C-DDDA7E7545F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80A8114F-4F1E-4804-804C-DDDA7E7545F9}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

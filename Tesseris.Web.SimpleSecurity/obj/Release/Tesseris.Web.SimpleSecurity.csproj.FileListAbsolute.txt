@@ -1,0 +1,8 @@
+C:\Sandeep\Ascentrik Project Workflow\AscentrikProjectWorkflow\Tesseris.Web.SimpleSecurity\bin\Release\Tesseris.Web.SimpleSecurity.dll
+C:\Sandeep\Ascentrik Project Workflow\AscentrikProjectWorkflow\Tesseris.Web.SimpleSecurity\bin\Release\Tesseris.Web.SimpleSecurity.pdb
+C:\Sandeep\Ascentrik Project Workflow\AscentrikProjectWorkflow\Tesseris.Web.SimpleSecurity\bin\Release\Dapper.dll
+C:\Sandeep\Ascentrik Project Workflow\AscentrikProjectWorkflow\Tesseris.Web.SimpleSecurity\bin\Release\Dapper.pdb
+C:\Sandeep\Ascentrik Project Workflow\AscentrikProjectWorkflow\Tesseris.Web.SimpleSecurity\bin\Release\Dapper.xml
+C:\Sandeep\Ascentrik Project Workflow\AscentrikProjectWorkflow\Tesseris.Web.SimpleSecurity\obj\Release\Tesseris.Web.SimpleSecurity.csprojResolveAssemblyReference.cache
+C:\Sandeep\Ascentrik Project Workflow\AscentrikProjectWorkflow\Tesseris.Web.SimpleSecurity\obj\Release\Tesseris.Web.SimpleSecurity.dll
+C:\Sandeep\Ascentrik Project Workflow\AscentrikProjectWorkflow\Tesseris.Web.SimpleSecurity\obj\Release\Tesseris.Web.SimpleSecurity.pdb

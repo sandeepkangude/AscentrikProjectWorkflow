@@ -1,0 +1,50 @@
+﻿@model AscentrikProjectWorkflow.ViewModel.ListViewModel
+<p class="errorPanel">
+</p>
+<p class="successPanel">
+</p>
+<fieldset>
+    <legend>ClientViewModel</legend>
+    @Html.HiddenFor(model => model.Id)
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Code)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Code)
+        @Html.ValidationMessageFor(model => model.Code)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.Reference)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.Reference)
+        @Html.ValidationMessageFor(model => model.Reference)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.ListType)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.Type, new SelectList(Model.ListTypes, "Key", "Value", Model.ListType), "--Select--", new {@class="dropdown", @style="width: 310px;" })
+        @Html.ValidationMessageFor(model => model.ListType)
+    </div>
+
+    <div class="editor-label">
+        @Html.LabelFor(model => model.ClientId)
+    </div>
+    <div class="editor-field">
+        @Html.DropDownListFor(model => model.ClientId, new SelectList(Model.Clients, "Key", "Value", Model.ClientId), "--Select--", new {@class="dropdown", @style="width: 310px;" })
+        @Html.ValidationMessageFor(model => model.ClientId)
+    </div>
+    
+    <div class="editor-label">
+        @Html.LabelFor(model => model.IsActive)
+    </div>
+    <div class="editor-field">
+        @Html.EditorFor(model => model.IsActive)
+        @Html.ValidationMessageFor(model => model.IsActive)
+    </div>
+</fieldset>
+
+

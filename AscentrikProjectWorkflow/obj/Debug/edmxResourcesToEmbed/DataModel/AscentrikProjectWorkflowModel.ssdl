@@ -1,0 +1,537 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="AscentrikProjectWorkflowModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="AscentrikProjectWorkflowModelStoreContainer">
+    <EntitySet Name="Client" EntityType="AscentrikProjectWorkflowModel.Store.Client" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Currency" EntityType="AscentrikProjectWorkflowModel.Store.Currency" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="List" EntityType="AscentrikProjectWorkflowModel.Store.List" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ListType" EntityType="AscentrikProjectWorkflowModel.Store.ListType" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Priority" EntityType="AscentrikProjectWorkflowModel.Store.Priority" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Project" EntityType="AscentrikProjectWorkflowModel.Store.Project" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProjectAssignment" EntityType="AscentrikProjectWorkflowModel.Store.ProjectAssignment" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProjectCosting" EntityType="AscentrikProjectWorkflowModel.Store.ProjectCosting" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="ProjectStatus" EntityType="AscentrikProjectWorkflowModel.Store.ProjectStatus" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="Role" EntityType="AscentrikProjectWorkflowModel.Store.Role" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="User" EntityType="AscentrikProjectWorkflowModel.Store.User" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="webpages_Membership" EntityType="AscentrikProjectWorkflowModel.Store.webpages_Membership" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="webpages_OAuthMembership" EntityType="AscentrikProjectWorkflowModel.Store.webpages_OAuthMembership" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="webpages_Roles" EntityType="AscentrikProjectWorkflowModel.Store.webpages_Roles" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="webpages_UsersInRoles" EntityType="AscentrikProjectWorkflowModel.Store.webpages_UsersInRoles" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="FK_Client_User" Association="AscentrikProjectWorkflowModel.Store.FK_Client_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Client" EntitySet="Client" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Client_User1" Association="AscentrikProjectWorkflowModel.Store.FK_Client_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Client" EntitySet="Client" />
+    </AssociationSet>
+    <AssociationSet Name="FK_List_Client" Association="AscentrikProjectWorkflowModel.Store.FK_List_Client">
+      <End Role="Client" EntitySet="Client" />
+      <End Role="List" EntitySet="List" />
+    </AssociationSet>
+    <AssociationSet Name="FK_List_ListType" Association="AscentrikProjectWorkflowModel.Store.FK_List_ListType">
+      <End Role="ListType" EntitySet="ListType" />
+      <End Role="List" EntitySet="List" />
+    </AssociationSet>
+    <AssociationSet Name="FK_List_User" Association="AscentrikProjectWorkflowModel.Store.FK_List_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="List" EntitySet="List" />
+    </AssociationSet>
+    <AssociationSet Name="FK_List_User1" Association="AscentrikProjectWorkflowModel.Store.FK_List_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="List" EntitySet="List" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ListType_User" Association="AscentrikProjectWorkflowModel.Store.FK_ListType_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="ListType" EntitySet="ListType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ListType_User1" Association="AscentrikProjectWorkflowModel.Store.FK_ListType_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="ListType" EntitySet="ListType" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_List" Association="AscentrikProjectWorkflowModel.Store.FK_Project_List">
+      <End Role="List" EntitySet="List" />
+      <End Role="Project" EntitySet="Project" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_Priority" Association="AscentrikProjectWorkflowModel.Store.FK_Project_Priority">
+      <End Role="Priority" EntitySet="Priority" />
+      <End Role="Project" EntitySet="Project" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_ProjectStatus" Association="AscentrikProjectWorkflowModel.Store.FK_Project_ProjectStatus">
+      <End Role="ProjectStatus" EntitySet="ProjectStatus" />
+      <End Role="Project" EntitySet="Project" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_User" Association="AscentrikProjectWorkflowModel.Store.FK_Project_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="Project" EntitySet="Project" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Project_User1" Association="AscentrikProjectWorkflowModel.Store.FK_Project_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="Project" EntitySet="Project" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectAssignment_Project" Association="AscentrikProjectWorkflowModel.Store.FK_ProjectAssignment_Project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="ProjectAssignment" EntitySet="ProjectAssignment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectAssignment_User" Association="AscentrikProjectWorkflowModel.Store.FK_ProjectAssignment_User">
+      <End Role="User" EntitySet="User" />
+      <End Role="ProjectAssignment" EntitySet="ProjectAssignment" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectCosting_Currency" Association="AscentrikProjectWorkflowModel.Store.FK_ProjectCosting_Currency">
+      <End Role="Currency" EntitySet="Currency" />
+      <End Role="ProjectCosting" EntitySet="ProjectCosting" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectCosting_Project" Association="AscentrikProjectWorkflowModel.Store.FK_ProjectCosting_Project">
+      <End Role="Project" EntitySet="Project" />
+      <End Role="ProjectCosting" EntitySet="ProjectCosting" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ProjectCosting_User1" Association="AscentrikProjectWorkflowModel.Store.FK_ProjectCosting_User1">
+      <End Role="User" EntitySet="User" />
+      <End Role="ProjectCosting" EntitySet="ProjectCosting" />
+    </AssociationSet>
+    <AssociationSet Name="fk_RoleId" Association="AscentrikProjectWorkflowModel.Store.fk_RoleId">
+      <End Role="webpages_Roles" EntitySet="webpages_Roles" />
+      <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+    </AssociationSet>
+    <AssociationSet Name="FK_User_Role" Association="AscentrikProjectWorkflowModel.Store.FK_User_Role">
+      <End Role="Role" EntitySet="Role" />
+      <End Role="User" EntitySet="User" />
+    </AssociationSet>
+    <AssociationSet Name="fk_UserId" Association="AscentrikProjectWorkflowModel.Store.fk_UserId">
+      <End Role="User" EntitySet="User" />
+      <End Role="webpages_UsersInRoles" EntitySet="webpages_UsersInRoles" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="Client">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="EditedBy" Type="int" />
+    <Property Name="EditedOn" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Currency">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="Code" Type="varchar" Nullable="false" MaxLength="3" />
+  </EntityType>
+  <EntityType Name="List">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Code" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Reference" Type="nvarchar(max)" />
+    <Property Name="Type" Type="int" Nullable="false" />
+    <Property Name="ClientId" Type="int" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="EditedBy" Type="int" />
+    <Property Name="EditedOn" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ListType">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Type" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="EditedBy" Type="int" />
+    <Property Name="EditedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Priority">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Project">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="500" />
+    <Property Name="ListId" Type="int" Nullable="false" />
+    <Property Name="Priority" Type="int" Nullable="false" />
+    <Property Name="ProjectCode" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="ProjectBrief" Type="nvarchar(max)" />
+    <Property Name="LinkdinLink" Type="nvarchar(max)" />
+    <Property Name="Requester" Type="nvarchar(max)" />
+    <Property Name="ApprovalDate" Type="datetime" />
+    <Property Name="DatesInformedToClient" Type="bit" />
+    <Property Name="NumberOfCompaniesApproved" Type="int" />
+    <Property Name="JobTitlesPerCompany" Type="int" />
+    <Property Name="RecordsToBeResearched" Type="int" />
+    <Property Name="DuplicateFounds" Type="int" />
+    <Property Name="NoOfRecordsDeliverd" Type="int" />
+    <Property Name="ExpectedDeliveryDate" Type="datetime" />
+    <Property Name="ActualDeliveryDate" Type="datetime" />
+    <Property Name="FTPUploadDate" Type="datetime" />
+    <Property Name="FTPUploadRemarks" Type="nvarchar(max)" />
+    <Property Name="ProjectStatus" Type="int" Nullable="false" />
+    <Property Name="AllotedTo" Type="nvarchar" MaxLength="50" />
+    <Property Name="Names" Type="nvarchar(max)" />
+    <Property Name="ResearchRemark" Type="nvarchar(max)" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="CreatedOn" Type="datetime" Nullable="false" />
+    <Property Name="EditedBy" Type="int" />
+    <Property Name="EditedOn" Type="datetime" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectAssignment">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectId" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ProjectCosting">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="ProjectId" Type="int" />
+    <Property Name="CostPerRecord" Type="decimal" />
+    <Property Name="ProjectInvoice" Type="decimal" />
+    <Property Name="Currency" Type="int" />
+    <Property Name="InvoiceCode" Type="nvarchar" MaxLength="500" />
+    <Property Name="InvoiceDate" Type="datetime" />
+    <Property Name="PaymentStatus" Type="int" />
+    <Property Name="InvoiceRemark" Type="nvarchar(max)" />
+    <Property Name="EditedBy" Type="int" />
+    <Property Name="EditedOn" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ProjectStatus">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="Role">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="User">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="EmailAddress" Type="nvarchar" Nullable="false" MaxLength="500" />
+    <Property Name="Password" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DisplayName" Type="nvarchar" Nullable="false" MaxLength="50" />
+    <Property Name="Role" Type="int" Nullable="false" />
+    <Property Name="CreatedDate" Type="datetime" Nullable="false" />
+    <Property Name="LastUpdatedDate" Type="datetime" />
+    <Property Name="CreatedBy" Type="int" Nullable="false" />
+    <Property Name="UpdatedBy" Type="int" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_Membership">
+    <Key>
+      <PropertyRef Name="UserId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="ConfirmationToken" Type="nvarchar" MaxLength="128" />
+    <Property Name="IsConfirmed" Type="bit" />
+    <Property Name="LastPasswordFailureDate" Type="datetime" />
+    <Property Name="PasswordFailuresSinceLastSuccess" Type="int" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="PasswordChangedDate" Type="datetime" />
+    <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="128" />
+    <Property Name="PasswordVerificationToken" Type="nvarchar" MaxLength="128" />
+    <Property Name="PasswordVerificationTokenExpirationDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="webpages_OAuthMembership">
+    <Key>
+      <PropertyRef Name="Provider" />
+      <PropertyRef Name="ProviderUserId" />
+    </Key>
+    <Property Name="Provider" Type="nvarchar" Nullable="false" MaxLength="30" />
+    <Property Name="ProviderUserId" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="UserId" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="webpages_Roles">
+    <Key>
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="RoleId" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
+  </EntityType>
+  <EntityType Name="webpages_UsersInRoles">
+    <Key>
+      <PropertyRef Name="UserId" />
+      <PropertyRef Name="RoleId" />
+    </Key>
+    <Property Name="UserId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_Client_User">
+    <End Role="User" Type="AscentrikProjectWorkflowModel.Store.User" Multiplicity="1" />
+    <End Role="Client" Type="AscentrikProjectWorkflowModel.Store.Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Client_User1">
+    <End Role="User" Type="AscentrikProjectWorkflowModel.Store.User" Multiplicity="0..1" />
+    <End Role="Client" Type="AscentrikProjectWorkflowModel.Store.Client" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Client">
+        <PropertyRef Name="EditedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_List_Client">
+    <End Role="Client" Type="AscentrikProjectWorkflowModel.Store.Client" Multiplicity="1" />
+    <End Role="List" Type="AscentrikProjectWorkflowModel.Store.List" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Client">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="List">
+        <PropertyRef Name="ClientId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_List_ListType">
+    <End Role="ListType" Type="AscentrikProjectWorkflowModel.Store.ListType" Multiplicity="1" />
+    <End Role="List" Type="AscentrikProjectWorkflowModel.Store.List" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ListType">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="List">
+        <PropertyRef Name="Type" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_List_User">
+    <End Role="User" Type="AscentrikProjectWorkflowModel.Store.User" Multiplicity="1" />
+    <End Role="List" Type="AscentrikProjectWorkflowModel.Store.List" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="List">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_List_User1">
+    <End Role="User" Type="AscentrikProjectWorkflowModel.Store.User" Multiplicity="0..1" />
+    <End Role="List" Type="AscentrikProjectWorkflowModel.Store.List" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="List">
+        <PropertyRef Name="EditedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ListType_User">
+    <End Role="User" Type="AscentrikProjectWorkflowModel.Store.User" Multiplicity="1" />
+    <End Role="ListType" Type="AscentrikProjectWorkflowModel.Store.ListType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ListType">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ListType_User1">
+    <End Role="User" Type="AscentrikProjectWorkflowModel.Store.User" Multiplicity="0..1" />
+    <End Role="ListType" Type="AscentrikProjectWorkflowModel.Store.ListType" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ListType">
+        <PropertyRef Name="EditedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_List">
+    <End Role="List" Type="AscentrikProjectWorkflowModel.Store.List" Multiplicity="1" />
+    <End Role="Project" Type="AscentrikProjectWorkflowModel.Store.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="List">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="ListId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_Priority">
+    <End Role="Priority" Type="AscentrikProjectWorkflowModel.Store.Priority" Multiplicity="1" />
+    <End Role="Project" Type="AscentrikProjectWorkflowModel.Store.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Priority">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="Priority" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_ProjectStatus">
+    <End Role="ProjectStatus" Type="AscentrikProjectWorkflowModel.Store.ProjectStatus" Multiplicity="1" />
+    <End Role="Project" Type="AscentrikProjectWorkflowModel.Store.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ProjectStatus">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="ProjectStatus" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_User">
+    <End Role="User" Type="AscentrikProjectWorkflowModel.Store.User" Multiplicity="1" />
+    <End Role="Project" Type="AscentrikProjectWorkflowModel.Store.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="CreatedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Project_User1">
+    <End Role="User" Type="AscentrikProjectWorkflowModel.Store.User" Multiplicity="0..1" />
+    <End Role="Project" Type="AscentrikProjectWorkflowModel.Store.Project" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Project">
+        <PropertyRef Name="EditedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectAssignment_Project">
+    <End Role="Project" Type="AscentrikProjectWorkflowModel.Store.Project" Multiplicity="1" />
+    <End Role="ProjectAssignment" Type="AscentrikProjectWorkflowModel.Store.ProjectAssignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectAssignment">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectAssignment_User">
+    <End Role="User" Type="AscentrikProjectWorkflowModel.Store.User" Multiplicity="1" />
+    <End Role="ProjectAssignment" Type="AscentrikProjectWorkflowModel.Store.ProjectAssignment" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectAssignment">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectCosting_Currency">
+    <End Role="Currency" Type="AscentrikProjectWorkflowModel.Store.Currency" Multiplicity="0..1" />
+    <End Role="ProjectCosting" Type="AscentrikProjectWorkflowModel.Store.ProjectCosting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Currency">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectCosting">
+        <PropertyRef Name="Currency" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectCosting_Project">
+    <End Role="Project" Type="AscentrikProjectWorkflowModel.Store.Project" Multiplicity="0..1" />
+    <End Role="ProjectCosting" Type="AscentrikProjectWorkflowModel.Store.ProjectCosting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Project">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectCosting">
+        <PropertyRef Name="ProjectId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ProjectCosting_User1">
+    <End Role="User" Type="AscentrikProjectWorkflowModel.Store.User" Multiplicity="0..1" />
+    <End Role="ProjectCosting" Type="AscentrikProjectWorkflowModel.Store.ProjectCosting" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ProjectCosting">
+        <PropertyRef Name="EditedBy" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_RoleId">
+    <End Role="webpages_Roles" Type="AscentrikProjectWorkflowModel.Store.webpages_Roles" Multiplicity="1" />
+    <End Role="webpages_UsersInRoles" Type="AscentrikProjectWorkflowModel.Store.webpages_UsersInRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="webpages_Roles">
+        <PropertyRef Name="RoleId" />
+      </Principal>
+      <Dependent Role="webpages_UsersInRoles">
+        <PropertyRef Name="RoleId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_User_Role">
+    <End Role="Role" Type="AscentrikProjectWorkflowModel.Store.Role" Multiplicity="1" />
+    <End Role="User" Type="AscentrikProjectWorkflowModel.Store.User" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Role">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="User">
+        <PropertyRef Name="Role" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="fk_UserId">
+    <End Role="User" Type="AscentrikProjectWorkflowModel.Store.User" Multiplicity="1" />
+    <End Role="webpages_UsersInRoles" Type="AscentrikProjectWorkflowModel.Store.webpages_UsersInRoles" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="User">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="webpages_UsersInRoles">
+        <PropertyRef Name="UserId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,69 @@
+﻿@model AscentrikProjectWorkflow.ViewModel.ProjectCostingViewModel
+
+@Html.HiddenFor(model => model.ProjectCostingId)
+@Html.HiddenFor(model => model.ProjectId)
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Cost Per Record</th>
+            <td>@Html.TextBoxFor(model => model.CostPerRecord)</td>
+            <td>@Html.ValidationMessageFor(model => model.CostPerRecord)</td>
+        </tr>
+
+        <tr>
+            <th>Currency</th>
+            <td>@Html.DropDownListFor(model => model.Currency, new SelectList(Model.CurrencyList, "Key", "Value", Model.Currency), "--Select--", new { @class = "dropdown", @style = "width: 310px;" })</td>
+            <td>@Html.ValidationMessageFor(model => model.Currency)</td>
+        </tr>
+
+        <tr>
+            <th>Project Invoice</th>
+            <td><strong>
+                @if (Model.Currency1 != null)
+                {
+                    @Model.Currency1.Code 
+                }
+                @Model.ProjectInvoice</strong>
+
+                @if (Model.Project != null)
+                {
+                    <small>(@Model.Project.NoOfRecordsDeliverd records delivered)</small>
+                }
+
+            </td>
+            <td>@Html.ValidationMessageFor(model => model.ProjectInvoice)</td>
+        </tr>
+
+        <tr>
+            <th>Invoice Code</th>
+            <td>@Html.TextBoxFor(model => model.InvoiceCode)</td>
+            <td>@Html.ValidationMessageFor(model => model.InvoiceCode)</td>
+        </tr>
+
+        <tr>
+            <th>Invoice Date</th>
+            <td>@Html.TextBoxFor(model => model.InvoiceDateText, new { @class = "datepicker" })<span>(dd-mm-yyyy)</span></td>
+            <td>@Html.ValidationMessageFor(model => model.InvoiceDateText)</td>
+        </tr>
+
+        <tr>
+            <th>Payment Status</th>
+            <td>@Html.DropDownListFor(model => model.PaymentStatus, new SelectList(Model.PaymentStatusList, "Key", "Value", Model.PaymentStatus), "--Select--", new { @class = "dropdown", @style = "width: 310px;" })</td>
+            <td>@Html.ValidationMessageFor(model => model.PaymentStatus)</td>
+        </tr>
+
+        <tr>
+            <th>Invoice Remarks</th>
+            <td>@Html.TextBoxFor(model => model.InvoiceRemark)</td>
+            <td>@Html.ValidationMessageFor(model => model.InvoiceRemark)</td>
+        </tr>
+
+    </tbody>
+</table>

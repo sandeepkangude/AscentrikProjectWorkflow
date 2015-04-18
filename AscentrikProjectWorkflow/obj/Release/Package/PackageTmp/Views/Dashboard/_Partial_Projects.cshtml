@@ -1,0 +1,112 @@
+﻿@model AscentrikProjectWorkflow.ViewModel.DashboardProjectsViewModel
+
+<div class="projects">
+
+    @if (Model.ShowInProgressProjects)
+    {
+        <h3>Current  Projects<small> (@Model.InProgressProjects.Count() projects)</small></h3>
+        <div class="projectSection">
+            <ul class="projectTile">
+                @foreach (var item in Model.InProgressProjects)
+                {
+                    <li class="item currentProjectTile shadow">
+                        <div class="firstDiv">
+                            <div class="projectCode">@item.ProjectCode</div>
+                            <div class="listCode">@item.List.Code (@item.List.Client.Code)</div>
+                            <div class="records">@item.NoOfRecordsDeliverd.GetValueOrDefault() records out of @item.RecordsToBeResearched.GetValueOrDefault()</div>
+                        </div>
+                        <div class="secondDiv">
+                            <div class="description">@item.ProjectBrief</div>
+                            <div class="links">
+                                <a class="showDetail" href="@Url.Action("Edit", "Project", new { id = item.Id })" code="@item.Id">Show Details</a>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="clear"></div>
+    }
+
+    @if (Model.ShowNewProjects)
+    {
+        <h3>New Projects <small>(@Model.NewProjects.Count() projects)</small></h3>
+        <div class="projectSection">
+            <ul class="projectTile">
+                @foreach (var item in Model.NewProjects)
+                {
+                    <li class="item newProjectTile shadow">
+                        <div class="firstDiv">
+                            <div class="projectCode">@item.ProjectCode</div>
+                            <div class="listCode">@item.List.Code (@item.List.Client.Code)</div>
+                            <div class="records">@item.NoOfRecordsDeliverd.GetValueOrDefault() records out of @item.RecordsToBeResearched.GetValueOrDefault()</div>
+                        </div>
+                        <div class="secondDiv">
+                            <div class="description">@item.ProjectBrief</div>
+                            <div class="links">
+                                <a class="showDetail"  href="@Url.Action("Edit", "Project", new { id = item.Id })" code="@item.Id">Show Details</a>
+                            </div>
+                        </div>
+                    </li>
+                }
+
+            </ul>
+        </div>
+        <div class="clear"></div>
+    }
+
+    @if (Model.ShowCompleteProjects)
+    {
+        <h3>Completed Projects<small> (@Model.CompleteProjects.Count() projects)</small></h3>
+        <div class="projectSection">
+            <ul class="projectTile">
+                @foreach (var item in Model.NewProjects)
+                {
+                    <li class="item completeProjectTile shadow">
+                        <div class="firstDiv">
+                            <div class="projectCode">@item.ProjectCode</div>
+                            <div class="listCode">@item.List.Code (@item.List.Client.Code)</div>
+                            <div class="records">@item.NoOfRecordsDeliverd.GetValueOrDefault() records out of @item.RecordsToBeResearched.GetValueOrDefault()</div>
+                        </div>
+                        <div class="secondDiv">
+                            <div class="description">@item.ProjectBrief</div>
+                            <div class="links">
+                                <a class="showDetail" href="@Url.Action("Edit", "Project", new { id = item.Id })" code="@item.Id">Show Details</a>
+                            </div>
+                        </div>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="clear"></div>
+    }
+
+    @if (!Model.ShowNewProjects && !Model.ShowInProgressProjects && !Model.ShowCompleteProjects)
+    {
+        <h3>Sorry! No project to display.</h3>
+    }
+</div>
+@Html.Hidden("GetProjectUri", Url.Action("GetProjectById", "Dashboard"))
+<script type="text/javascript">
+    //$('.showDetail').click(function () {
+    //    var id = $(this).attr("code");
+    //    var url = $('#GetProjectUri').val();
+    //    $('#projDetail').html("");
+    //    ShowLoader();
+    //    $.ajax({
+    //        url: url,
+    //        type: "GET",
+    //        data: { id: id },
+    //        success: function (sendresponse) {
+    //            HideLoader();
+    //            $('#projDetail').html(sendresponse)
+    //        },
+    //        error: function (xhr, err) {
+    //            HideLoader();
+    //            ShowPopupMsg("Sorry some error occured.");
+    //            return false;
+    //        }
+    //    });
+    //});
+
+</script>

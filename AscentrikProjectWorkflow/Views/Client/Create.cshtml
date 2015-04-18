@@ -1,0 +1,32 @@
+﻿@model AscentrikProjectWorkflow.ViewModel.ClientViewModel
+
+@using (Ajax.BeginForm("Create", "Client", new AjaxOptions
+{
+    HttpMethod = "POST",
+    OnSuccess = "onCreateSuccess",
+    OnFailure = "onCreateFailure"
+}))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <div class="modal bootstrap-dialog size-normal type-primary fade in" id="createModal" tabindex="-1" role="dialog" aria-labelledby="listModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                    <h3 class="modal-title bootstrap-dialog-title" id="listModalLabel">Add new Client</h3>
+                </div>
+                <div class="modal-body">
+                   @{Html.RenderPartial("~/Views/Client/_Partial_ClientEditor.cshtml", Model);}
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+

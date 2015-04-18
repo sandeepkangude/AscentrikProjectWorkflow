@@ -1,0 +1,194 @@
+﻿@model IEnumerable<AscentrikProjectWorkflow.ViewModel.ListTypeViewModel>
+@{
+    ViewBag.Title = "List Types";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeaderPanel {
+    <div class="headerPanel">
+        <div class="content-wrapper">
+            <div class="floarL leftAlign"><span class="headerText">List Types</span></div>
+            <div class="floatR rightAlign"></div>
+        </div>
+    </div>
+}
+<div class="clear"></div>
+<div class="detailPanel">
+    <button id="btnCreateListType" class="btn btn-primary" data-toggle="modal" data-target="#listTypeModal">
+        Add new List type
+    </button>
+    <a href="@Url.Action("Index", "List")" class="btn btn-info">Show Lists</a>
+    
+    <div class="table-responsive">
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th>List Type Id</th>
+                    <th>List Type</th>
+                    <th>Status</th>
+                    <th style="width: 130px;"></th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td><a href="javascript:void(0);">@item.Type</a></td>
+                        <td>@Html.Partial("_Partial_ActiveInActive", item.IsActive)</td>
+                        <td>
+                            <button class="btn btn-sm btn-warning editbtn" data-toggle="modal" data-target="#editModal" code="@item.Id">Edit</button>
+                            <button class="btn btn-sm btn-danger deletebtn" data-toggle="modal" data-target="#deleteModal" code="@item.Id">Delete</button>
+                        </td>
+                    </tr>
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4">No records found..</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal bootstrap-dialog size-normal type-primary fade in" id="listTypeModal" tabindex="-1" role="dialog" aria-labelledby="listTypeLabel" aria-hidden="true">
+    <div class="modal-dialog"  id="createListTypeDiv">
+    </div>
+</div>
+
+@*Edit Model Dialog*@
+<div class="modal bootstrap-dialog size-normal type-primary fade in" id="editModal" tabindex="-1" role="dialog" aria-labelledby="listModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" id="editModelBody">
+
+        </div>
+    </div>
+</div>
+
+@*Delete Model Dialog*@
+<div class="modal bootstrap-dialog size-normal type-primary fade in" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="listModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h3 class="modal-title bootstrap-dialog-title" id="listModalLabel">Delete Client</h3>
+            </div>
+            <div class="modal-body grayMsg">
+                Are you sure you wants to delete this List Type?
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary yesbtn" data-dismiss="modal">YES</button>
+                <button type="button" class="btn btn-default nobtn" data-dismiss="modal">NO</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@Html.Hidden("CreateListTypeUri", Url.Action("CreateListType", "List"))
+@Html.Hidden("EditListTypeUri", Url.Action("EditListType", "List"))
+@Html.Hidden("DeleteListTypeUri", Url.Action("DeleteListType", "List"))
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#menu').find('li').removeClass('activeMenu');
+        $('#mnuLists').addClass('activeMenu');
+    });
+
+    $('#btnCreateListType').click(function () {
+
+        var url = $('#CreateListTypeUri').val();
+        $.ajax({
+            url: url,
+            type: "GET",
+            success: function (sendresponse) {
+                $('#createListTypeDiv').html(sendresponse);
+            },
+            error: function (xhr, err) {
+                ShowPopupMsg("Sorry some error occured.");
+            }
+        });
+    });
+
+    $('.editbtn').click(function () {
+        var id = $(this).attr("code");
+        var url = $('#EditListTypeUri').val();
+        $.ajax({
+            url: url,
+            type: "GET",
+            data: { id: id },
+            success: function (sendresponse) {
+                $('#editModelBody').html(sendresponse);
+            },
+            error: function (xhr, err) {
+
+                ShowPopupMsg("Sorry some error occured.");
+            }
+        });
+    });
+
+    $('.deletebtn').click(function () {
+        var id = $(this).attr("code");
+        var url = $('#DeleteListTypeUri').val();
+        $('.yesbtn').unbind('click');
+        $('.yesbtn').bind('click', function () {
+            ShowLoader();
+            $.ajax({
+                url: url,
+                type: "POST",
+                data: { id: id },
+                success: function (sendresponse) {
+                    HideLoader();
+                    if (sendresponse.status == true) {
+                        location.reload(true);
+                    }
+                    else {
+                        ShowPopupMsg(sendresponse.message);
+                        return false;
+                    }
+                },
+                error: function (xhr, err) {
+                    HideLoader();
+                    ShowPopupMsg("Sorry some error occured.");
+                    return false;
+                }
+            });
+        });
+    });
+
+    function onCreateBegin()
+    {
+        ShowLoader();
+    }
+
+    function onCreateSuccess(data) {
+        $('.errorPanel').text("");
+        $('.errorPanel').hide();
+        $('.successPanel').text("");
+        $('.successPanel').hide();
+        if (data.status == true) {
+            HideLoader();
+            $('.successPanel').show();
+            $('.successPanel').text(data.message);
+            setTimeout(function () {
+                location.reload(true);
+            }, 1000);
+        }
+        else {
+            $('.errorPanel').show();
+            $('.errorPanel').text(data.message);
+        }
+    }
+
+    function onCreateFailure() {
+        HideLoader();
+        $('.errorPanel').show();
+        $('.errorPanel').text("Sorry some error occured.");
+
+    }
+</script>
+   

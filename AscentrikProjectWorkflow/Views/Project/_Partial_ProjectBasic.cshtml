@@ -1,0 +1,138 @@
+﻿@model AscentrikProjectWorkflow.ViewModel.ProjectViewModel
+
+<div class="modal-footer" id="divStatus">
+    <strong>Project Status: &nbsp;</strong>
+    @Html.DropDownListFor(model => model.ProjectStatus, new SelectList(Model.StatusList, "Key", "Value", Model.ProjectStatus), "--Select--", new { @class = "dropdown" })
+</div>
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th>Name</th>
+            <td>@Html.TextBoxFor(model => model.Name)</td>
+            <td>@Html.ValidationMessageFor(model => model.Name)</td>
+        </tr>
+
+        <tr>
+            <th>Code</th>
+            <td>@Html.TextBoxFor(model => model.ProjectCode)</td>
+            <td>@Html.ValidationMessageFor(model => model.ProjectCode)</td>
+        </tr>
+
+        <tr>
+            <th>Client</th>
+            <td>@Html.DropDownListFor(model => model.ClientId, new SelectList(Model.ClientList, "Key", "Value", Model.ClientId), "--Select--", new { @class = "dropdown", @style = "width: 310px;" })</td>
+            <td>@Html.ValidationMessageFor(model => model.ClientId)</td>
+        </tr>
+
+        <tr>
+            <th>List Reference</th>
+            <td>@Html.DropDownListFor(model => model.ListId, new SelectList(Model.ListReferenceList, "Key", "Value", Model.ListId), "--Select--", new { @class = "dropdown", @style = "width: 310px;" })
+                <small>(Select client to choose List reference)</small>
+            </td>
+            <td>@Html.ValidationMessageFor(model => model.ListId)</td>
+        </tr>
+
+        <tr>
+            <th>Project Brief</th>
+            <td>@Html.TextAreaFor(model => model.ProjectBrief)</td>
+            <td>@Html.ValidationMessageFor(model => model.ProjectBrief)</td>
+        </tr>
+
+        <tr>
+            <th>Priority</th>
+            <td>@Html.DropDownListFor(model => model.Priority, new SelectList(Model.PriorityList, "Key", "Value", Model.Priority), "--Select--", new { @class = "dropdown", @style = "width: 310px;" })</td>
+            <td>@Html.ValidationMessageFor(model => model.Priority)</td>
+        </tr>
+
+        <tr>
+            <th>Linkdin Link</th>
+            <td>@Html.TextBoxFor(model => model.LinkdinLink)</td>
+            <td>@Html.ValidationMessageFor(model => model.LinkdinLink)</td>
+        </tr>
+
+        <tr>
+            <th>Requester</th>
+            <td>@Html.TextBoxFor(model => model.Requester)</td>
+            <td>@Html.ValidationMessageFor(model => model.Requester)</td>
+        </tr>
+
+        <tr>
+            <th>Approval Date</th>
+            <td>@Html.TextBoxFor(model => model.ApprovalDateText, new { @class = "datepicker" })<span>(dd-mm-yyyy)</span></td>
+            <td>@Html.ValidationMessageFor(model => model.ApprovalDateText)</td>
+        </tr>
+
+        <tr>
+            <th>Dates Informed To Client</th>
+            <td>@Html.DropDownListFor(model => model.DatesInformedToClient, new SelectList(Model.Choice, "Key", "Value", Model.DatesInformedToClient), "--Select--", new { @class = "dropdown", @style = "width: 310px;" })</td>
+            <td>@Html.ValidationMessageFor(model => model.DatesInformedToClient)</td>
+        </tr>
+
+        <tr>
+            <th>Number Of Companies Approved</th>
+            <td>@Html.TextBoxFor(model => model.NumberOfCompaniesApproved)</td>
+            <td>@Html.ValidationMessageFor(model => model.NumberOfCompaniesApproved)</td>
+        </tr>
+
+        <tr>
+            <th>Job Titles Per Company</th>
+            <td>@Html.TextBoxFor(model => model.JobTitlesPerCompany)</td>
+            <td>@Html.ValidationMessageFor(model => model.JobTitlesPerCompany)</td>
+        </tr>
+
+        <tr>
+            <th>Records To Be Researched</th>
+            <td>@Html.TextBoxFor(model => model.RecordsToBeResearched)</td>
+            <td>@Html.ValidationMessageFor(model => model.RecordsToBeResearched)</td>
+        </tr>
+
+        <tr>
+            <th>Expected Delivery Date</th>
+            <td>@Html.TextBoxFor(model => model.ExpectedDeliveryDateText, new { @class = "datepicker" })<span>(dd-mm-yyyy)</span></td>
+            <td>@Html.ValidationMessageFor(model => model.ExpectedDeliveryDateText)</td>
+        </tr>
+
+        <tr>
+            <th>Alloted To</th>
+            <td>@Html.DropDownListFor(model => model.AllotedTo, new SelectList(Model.AllotedToList, "Key", "Value", Model.AllotedTo), "--Select--", new { @class = "dropdown", @style = "width: 310px;" })</td>
+            <td>@Html.ValidationMessageFor(model => model.AllotedTo)</td>
+        </tr>
+
+        <tr>
+            <th>Names</th>
+            <td>@Html.TextBoxFor(model => model.Names)</td>
+            <td>@Html.ValidationMessageFor(model => model.Names)</td>
+        </tr>
+
+    </tbody>
+</table>
+@Html.Hidden("GetListReferenceUri", Url.Action("GetListReferenceByClient", "Base"))
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#ClientId').change(function () {
+            var id = $(this).val();
+            $.getJSON($('#GetListReferenceUri').val(), { clientId: id },
+                        function (data) {
+                            var select = $("#ListId");
+                            select.empty();
+                            select.append($('<option/>', {
+                                value: 0,
+                                text: "--Select--"
+                            }));
+                            $.each(data, function (index, itemData) {
+                                select.append($('<option/>', {
+                                    value: itemData.Value,
+                                    text: itemData.Text
+                                }));
+                            });
+                        });
+        });
+    });
+</script>
